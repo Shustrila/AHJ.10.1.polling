@@ -1,0 +1,44 @@
+* {
+    padding: 0;
+    margin: 0;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    outline: transparent;
+}
+
+html {
+    height: 100%;
+    font-family: "Apple Symbols", serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.polling {
+    width: 500px;
+}
+.polling_title {
+    margin-bottom: 15px;
+}
+.polling__list {
+    width: 100%;
+    border: 1px solid #000000;
+    border-bottom: 0;
+}
+.polling__item {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 10px 20px;
+    border-bottom: 1px solid #000000;
+}
+.polling__item-subject {
+    flex-grow: 1;
+    text-align: center;
+    margin: 0 15px;
+}
