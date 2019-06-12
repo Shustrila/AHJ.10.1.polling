@@ -1,7 +1,6 @@
 import Polling from './Polling';
 
-const polling = new Polling();
+const nodeRoot = document.querySelector('[data-widget="polling"]');
+const polling = new Polling(nodeRoot);
 
-polling.init('[data-widget="polling"]').then(data => {
-    polling.create(data);
-});
+polling.init();
