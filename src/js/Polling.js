@@ -1,5 +1,3 @@
-import moment from 'moment';
-
 import PollingView from './PollingView';
 import PollingStreams from './PollingStreams';
 
@@ -19,7 +17,7 @@ class Polling {
     _subscribeTimer(timer$) {
         timer$.subscribe({
             next: data => this.view.createItem(data[0]),
-            error: err => console.log(err),
+            error: err => new Error(err),
         })
     }
 }
