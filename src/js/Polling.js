@@ -16,7 +16,7 @@ class Polling {
 
     _subscribeTimer(timer$) {
         timer$.subscribe({
-            next: data => this.view.createItem(data[0]),
+            next: data => this.view.createItem(data),
             error: err => new Error(err),
         })
     }

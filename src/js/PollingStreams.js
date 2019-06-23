@@ -1,23 +1,29 @@
 import { timer, of } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
-import { switchMap, map, catchError } from 'rxjs/operators';
+import { catchError, map, concatMap } from 'rxjs/operators';
 
 class PollingStreams {
     constructor() {
-        this.timer$ = {}
+        this.timer$ = timer(0, 1000)
+    }
+
+    _getPosts(url, item) {
+        return ajax.getJSON(url).pipe(
+            map(data => {
+                if(data.status === 'ok') {
+                    return data.messages[item];
+                } else {
+                    return [];
+                }
+            }),
+            catchError(() => of([]))
+        )
     }
 
     createTimer(url) {
-        this.timer$ =  timer(0, 1000);
-
         return this.timer$.pipe(
-            switchMap(() => ajax.getJSON(url)),
-            map(data => {
-                if(data.status === 'ok') {
-                    return data.messages;
-                }
-            }),
-            catchError(err => of(err))
+            concatMap(item => this._getPosts(url, item)),
+
         )
     }
 }
